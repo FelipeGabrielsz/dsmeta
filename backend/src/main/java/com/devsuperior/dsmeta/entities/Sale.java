@@ -1,7 +1,13 @@
 package com.devsuperior.dsmeta.entities;
 
-import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "tb_sales")
@@ -14,9 +20,10 @@ public class Sale {
     private Integer visited;
     private Integer deals;
     private Double amount;
-    private LocalDateTime date;
+    private LocalDate date;
 
     public Sale() {
+
     }
 
     public Long getId() {
@@ -59,11 +66,13 @@ public class Sale {
         this.amount = amount;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
+
+
 }
