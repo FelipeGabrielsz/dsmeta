@@ -23,8 +23,6 @@ function SalesCard() {
         //Slice, traduzido fica recortar/fatias, corta a nossa string, de um pedaço X até um pedaço Y
         const dmin = minDate.toISOString().slice(0,10);
         const dmax = maxDate.toISOString().slice(0,10);
-
-        console.log(dmin);
         
         //Passando como argumento o conteudo obtido no calendario, claro, depois de transformado e tratado
         axios.get(`${BASE_URL}/sales?minDate=${dmin}&maxDate=${dmax}`)
@@ -88,7 +86,7 @@ function SalesCard() {
                                         <td>
                                             <div className="dsmeta-red-btn-container">
 
-                                                <NotificationButton />
+                                                <NotificationButton saleId={sale.id}/>
 
                                             </div>
                                         </td>
