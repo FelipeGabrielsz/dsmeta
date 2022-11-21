@@ -1,9 +1,17 @@
 import Header from "./components/Header"
 import SalesCard from "./components/SalesCard"
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
     <>
+
+    {/*LIB, Toastfy, de toast.*/}
+    {/*Declaramos ela aqui, e podemos chamar em qualquer component*/}
+    {/*LIB tem bastante toast, sao bem bonitos*/}
+    <ToastContainer />
+    
       <Header/>
       <main>
         <section id="sales">
