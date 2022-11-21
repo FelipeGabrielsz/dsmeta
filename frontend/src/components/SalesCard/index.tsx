@@ -16,12 +16,23 @@ function SalesCard() {
     const [sales, setSales] = useState<Sale[]>([]);
 
     useEffect(() => {
-        axios.get(`${BASE_URL}/sales`)
+
+        //Data minima
+        //Formatando o date
+        //Recortando a string, pois mesmo formatada, a mesma vinha com conteudos a mais.
+        //Slice, traduzido fica recortar/fatias, corta a nossa string, de um pedaço X até um pedaço Y
+        const dmin = minDate.toISOString().slice(0,10);
+        const dmax = maxDate.toISOString().slice(0,10);
+
+        console.log(dmin);
+        
+        //Passando como argumento o conteudo obtido no calendario, claro, depois de transformado e tratado
+        axios.get(`${BASE_URL}/sales?minDate=${dmin}&maxDate=${dmax}`)
             .then(response => {
                 setSales(response.data.content)
 
             })
-    }, [])
+    }, [minDate, maxDate])
 
     return (
         <div className="dsmeta-card">
@@ -64,12 +75,16 @@ function SalesCard() {
                                 return (
                                     <tr key={sale.id}>
                                         <td className="show992">#3{sale.id}</td>
+                                        
+                                        <td className="show576">{new Date(sale.date).toLocaleDateString()}
                                         {/*Formatando para que fique dia, mes e ano */}
-                                        <td className="show576">{new Date(sale.date).toLocaleDateString()}</td>
+                                        </td>
                                         <td>{sale.sellerName}</td>
                                         <td className="show992">{sale.visited}</td>
                                         <td className="show992">{sale.deals}</td>
-                                        <td>R$ {sale.amount.toFixed(2)}</td> {/*Formada para 2 casas decimais */}
+                                        <td>R$ {sale.amount.toFixed(2)}
+                                        {/*Formada para 2 casas decimais */}
+                                        </td> 
                                         <td>
                                             <div className="dsmeta-red-btn-container">
 
